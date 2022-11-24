@@ -1,0 +1,54 @@
+﻿@model VentaApp.Web.Models.Category.CategoryDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CategoryDeleteViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+           ID:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+        <dt class = "col-sm-2">
+           Nombre:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+    </dl>
+    
+    <form  asp-action="Delete" id="formulario">
+        <input type="hidden"  asp-for="CategoryID" />
+        <input type="hidden"  asp-for="Nombre"  />
+        <input type="button" value="Delete" class="btn btn-danger" id="btnDelete" /> 
+        <a asp-action="Index">Back to List</a>
+    </form>
+
+    <!-- Script para confirmacion de eliminacion -->
+    <script>
+
+        const btnDelete = document.getElementById('btnDelete');
+
+        btnDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (confirm("Desea eliminar esta Categoria?") == true)
+                var form = document.getElementById('formulario').submit();
+            else
+                return;      
+
+        })
+       
+    </script>
+
+
+</div>
